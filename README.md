@@ -1,28 +1,28 @@
 # Bank System Management Database
 
-MSSQL Server üzərində hazırlanmış bank kredit və kassa idarəetmə sisteminin verilənlər bazası arxitekturası.
+A database architecture for a bank credit and cash management system built on MSSQL Server.
 
-## 🚀 Texnologiyalar
+## 🚀 Technologies
 * **RDBMS:** Microsoft SQL Server
-* **Dil:** T-SQL (Stored Procedures, Functions, Constraints)
+* **Language:** T-SQL (Stored Procedures, Functions, Constraints)
 
-## 📊 Cədvəllər və Struktur (12 Əsas Cədvəl)
-* **Müştəri & İş yeri:** `Müştərilər`, `İşYeri`, `Müştərilərinİşyeri`
-* **Kredit & Müqavilə:** `Müqavilə`, `KreditNövü`, `Hesabat` (Ödəniş qrafiki)
-* **Strukturu & Heyət:** `Filial`, `Bankİşçiləri`, `BankVəzifələri`
-* **Maliyyə & Transaksiya:** `Transaksiya`, `TransaksiyaNövü`, `Valyuta`
+## 📊 Tables and Structure (12 Core Tables)
+* **Customer & Workplace:** `Customers`, `Workplace`, `CustomersWorkplace`
+* **Credit & Contract:** `Contract`, `CreditType`, `Statement` (Payment schedule)
+* **Structure & Staff:** `Branch`, `BankEmployees`, `BankPositions`
+* **Finance & Transaction:** `Transaction`, `TransactionType`, `Currency`
 
-## 🛡️ Tətbiq Olunan Biznes Qaydaları
-* **Check Constraints:** `Fin_kod` (7 simvol) və `Hesab_nömrəsi` (20 simvol) validasiyası. `Müqavilə` cədvəlində kredit növlərinə görə limit, faiz və staj məhdudiyyətləri.
-* **Security:** Verilənlər bazası səviyyəsində giriş kontrolu üçün `IDK` tətbiq rolu (Application Role).
+## 🛡️ Applied Business Rules
+* **Check Constraints:** `Fin_code` (7 characters) and `Account_number` (20 characters) validation. Credit-specific limit, interest rate, and employment history constraints implemented inside the `Contract` table.
+* **Database Security:** An `IDK` Application Role for secure, application-level access control.
 
-## ⚙️ Prosedur və Funksiyalar
-* `dbo.Ay`: İki tarix arasındakı fərqi ay olaraq hesablayır.
-* `dbo.Staj`: Müştərinin iş stajını yoxlayır (Kredit müraciəti üçün).
-* `dbo.SumOfSalary`: İşçi və müştərilərin ümumi maaş dövriyyəsini hesablayır.
-* `dbo.UmumiSay`: Filiala görə verilən ümumi kredit miqdarını çıxarır.
-* `dbo.Exist` & `dbo.SelectByID`: Müştəri ID-sinə görə təhlükəsiz sorğulama prosedurları.
+## ⚙️ Procedures and Functions
+* `dbo.Ay`: Calculates date differences in months for credit terms.
+* `dbo.Staj`: Verifies customer employment duration for credit eligibility.
+* `dbo.SumOfSalary`: Analyzes total salary turnover across employees and customers.
+* `dbo.UmumiSay`: Generates a dynamic report of total credit amounts issued per branch.
+* `dbo.Exist` & `dbo.SelectByID`: Secure data retrieval procedures based on customer parameters.
 
-## 🛠️ Quraşdırma
-1. Reponu klonlayın: `git clone https://github.com/Emilhubb/bank-system-management-db.git`
-2. `bank_system.sql` faylını SSMS-də açın və **Execute (F5)** edin.
+## 🛠️ Setup
+1. Clone the repo: `git clone https://github.com/Emilhubb/bank-system-management-db.git`
+2. Open `bank_system.sql` in SSMS and press **Execute (F5)**.
